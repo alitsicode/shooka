@@ -1,0 +1,389 @@
+{% load static %}
+{% load i18n %}
+{% comment %} {% load widget_tweaks %} {% endcomment %}
+<!doctype html>
+<html class="no-js" lang="fa" dir="rtl">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{% block title %}{{about.company_name}}{% endblock title %}</title>
+        <meta name="description" content="Gerow - Business Consulting HTML Template">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+        <!-- Place favicon.ico in the root directory -->
+
+        <!-- CSS here -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+        <link rel="stylesheet" href="{% static 'css/fontawesome-all.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'css/odometer.css' %}">
+        <link rel="stylesheet" href="{% static 'css/jarallax.css' %}">
+        <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+        <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+        <link rel="stylesheet" href="{% static 'css/default.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/rtl.css' %}">
+        <link rel="stylesheet" href="{% static 'css/font.css' %}">
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+        <style>
+            @font-face {
+                font-family: "lalezar";
+                src: url("{% static 'fonts/Lalezar-Regular.ttf' %}");
+            }
+            body,p,h1,h2,h3,h4,h5,h6,a,span,li{
+                font-family: "lalezar";
+            }
+            .last-drop:hover{
+                background-color:#d9c100;
+                transition:1.5s ease;
+            }
+            .current_url{
+                background-color:#d9c100;
+            }
+            .footer-content > p{
+                color:white;
+            }
+        </style>
+    </head>
+    <body>
+
+
+        
+		<!-- Scroll-top -->
+        <button class="scroll-top scroll-to-target" data-target="html">
+            <i class="fas fa-angle-up"></i>
+        </button>
+        <!-- Scroll-top-end-->
+
+        <!-- header-area -->
+        <header id="sticky-header" class="transparent-header header-style-two">
+            <div class="container custom-container">
+                <div class="heder-top-wrap">
+                    <div class="row align-items-center">
+                        <div class="col-lg-7">
+                            <div class="header-top-left">
+                                <ul class="list-wrap">
+                                    <li><i class="flaticon-location"></i>{{about.address}}</li>
+                                    <li><i class="flaticon-mail"></i><a href="mailto:test@test.com">{{about.email}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="header-top-right">
+                                <div class="header-social">
+                                    <ul style='padding-left:18px;' class="list-wrap">
+                                        {% if about.linkdin_id %}<li><a href="#"><i class="fab fa-linkedin fa-lg"></i></a></li>{% endif %}
+                                        {% if about.instagram_id %}<li><a href="#"><i class="fab fa-instagram fa-lg"></i></a></li>{% endif %}
+                                        {% if about.telegram_id %}<li><a href="#"><i class="fab fa-telegram fa-lg"></i></a></li>{% endif %}
+                                        {% if about.whatsapp_number %}<li><a href="#"><i class="fab fa-whatsapp fa-lg"></i></a></li>{% endif %}
+                                        {% if about.eita_id %}<li><a href="#">{% trans "eita" %}</a></li>{% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-area">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="mobile-nav-toggler"><i class="fas fa-bars"></i></div>
+                            <div class="menu-wrap">
+                                <nav class="menu-nav">
+                                    <div class="logo">
+                                        <a href="{% url 'home' %}"><img class='rounded-circle' style='height:70px;width:70px;' src="{{about.logo.url}}" alt="Logo"></a>
+                                    </div>
+                                    <div class="navbar-wrap main-menu d-none d-lg-flex">
+                                        <ul class="navigation">
+                                            <li class="{% if request.resolver_match.url_name == 'home' %} active {% endif %} text-dark"><a style='padding-top:35px;' href="{% url 'home' %}"> {% trans "home" %} </a></li>
+                                            <li class="{% if request.resolver_match.url_name == 'blogs' or request.resolver_match.url_name == 'news' or request.resolver_match.url_name == 'products' %} active {% endif %} menu-item-has-children text-dark"><a style='cursor:default;'> {% trans "main Pages" %} </a>
+                                                <ul class="sub-menu">
+                                                    <li class="last-drop mt-2 {% if request.resolver_match.url_name == 'blogs' %} current_url {% endif %}"><a href="{% url 'blogs' %}">{% trans "Blogs" %}</a></li>
+                                                    <li class="last-drop mt-2 {% if request.resolver_match.url_name == 'news' %} current_url {% endif %}"><a href="{% url 'news' %}">{% trans "News" %}</a></li>
+                                                    <li class="last-drop mt-2 {% if request.resolver_match.url_name == 'products' %} current_url {% endif %}"><a href="{% url 'products' %}">{% trans "products" %}</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="{% if request.resolver_match.url_name == 'contact_us' or request.resolver_match.url_name == 'about_us' %} active {% endif %} menu-item-has-children text-dark"><a style='cursor:default;'> {% trans "About Us" %} </a>
+                                                <ul class="sub-menu">
+                                                    <li class="last-drop mt-2 {% if request.resolver_match.url_name == 'contact_us' %} current_url {% endif %}"><a href="{% url 'contact_us' %}">{% trans "Contact Us" %}</a></li>
+                                                    <li class="last-drop mt-2 {% if request.resolver_match.url_name == 'about_us' %} current_url {% endif %}"><a href="{% url 'about_us' %}">{% trans "About Us" %}</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="menu-item-has-children {% if request.resolver_match.url_name == 'product_category' or request.resolver_match.url_name == 'blog_category' or request.resolver_match.url_name == 'new_category' %} active {% endif %}"><a class='text-dark' style='cursor:default;'> {% trans "Categories" %} </a>
+                                                <ul class="sub-menu">
+                                                    <li class="last-drop menu-item-has-children mt-2 {% if request.resolver_match.url_name == 'product_category' %} current_url {% endif %}"><a>{% trans "Products" %}</a>
+                                                    <ul class='sub-menu'>
+                                                        {% for cat in product_category %}
+                                                        <li class='last-drop mt-2'><a href="{% url 'product_category' cat.id %}">{{cat.title}} <img class='me-5' style='width:50px;height:50px;' src="{{cat.image.url}}" alt=""></a></li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                    </li>
+                                                    <li class="last-drop menu-item-has-children mt-2 {% if request.resolver_match.url_name == 'blog_category' %} current_url {% endif %}"><a>{% trans "Blogs" %}</a>
+                                                        <ul class='sub-menu'>
+                                                            {% for cat in blogs_category %}
+                                                            <li class='last-drop mt-2'><a href="{% url 'blog_category' cat.id %}">{{cat.title}} <img class='me-5' style='width:50px;height:50px;' src="{{cat.image.url}}" alt=""></a></li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                    <li class="last-drop menu-item-has-children mt-2 {% if request.resolver_match.url_name == 'new_category' %} current_url {% endif %}"><a>{% trans "News" %}</a>
+                                                        <ul class='sub-menu'>
+                                                            {% for cat in news_category %}
+                                                            <li class='last-drop mt-2'><a href="{% url 'new_category' cat.id %}">{{cat.title}} <img class='me-5' style='width:50px;height:50px;' src="{{cat.image.url}}" alt=""></a></li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="header-action">
+                                        <ul class="list-wrap">
+                                            <li class="header-contact-two">
+                                                <div class="icon">
+                                                    <i class="flaticon-phone-call"></i>
+                                                </div>
+                                                <div class="content">
+                                                    <span>{% trans "Call Us" %}</span>
+                                                    <a href="tel:0123456789">{{about.phone_number}}</a>
+                                                </div>
+                                            </li>
+                                            <li class="header-search"><a href="#"><i class="flaticon-search"></i></a></li>
+                                            <li class="offcanvas-menu">
+                                                <a href="#" class="menu-tigger">
+                                                    <span></span>
+                                                    <span></span>
+                                                    <span></span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            
+
+                            <!-- Mobile Menu  -->
+                            <div class="mobile-menu">
+                                <nav class="menu-box">
+                                    <div class="close-btn"><i class="fas fa-times"></i></div>
+                                    <div class="nav-logo">
+                                        <a href="index.html"><img class='rounded-circle' style='width:70px;height:70px;' src="{{about.logo.url}}" alt="Logo"></a>
+                                    </div>
+                                    <div class="mobile-search">
+                                        <form action="{% url 'search_product' %}">
+                                            <input name='search' type="text" placeholder="{% trans "type product you want ..." %}">
+                                            <button type='submit'><i class="flaticon-search"></i></button>
+                                        </form>
+                                    </div>
+                                    <div class="menu-outer">
+                                        <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                                    </div>
+                                    <div class="social-links">
+                                        <ul class="clearfix list-wrap">
+                                            <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                            <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                                        </ul>
+                                    </div>
+                                    <div class='pe-3'>
+                                        <h4 class='text-primary'>{% trans "Address" %}</h4>
+                                        <p>{{about.address}}</p>
+                                        <h4 class='text-primary'>{% trans "Email" %}</h4>
+                                        <p>{{about.email}}</p>
+                                        <h4 class='text-primary'>{% trans "Phone" %}</h4>
+                                        <p>{{about.phone_number}}</p>
+                                    </div>
+                                </nav>
+                            </div>
+                            <div class="menu-backdrop"></div>
+                            <!-- End Mobile Menu -->
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+            <!-- header-search -->
+            <div class="search-popup-wrap" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="search-close">
+                    <span><i class="fas fa-times"></i></span>
+                </div>
+                <div class="search-wrap text-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <h2 class="title"> {% trans "search here" %}</h2>
+                                <div class="search-form">
+                                    <form action="{% url 'search_product' %}">
+                                        <input type="text" name="search" placeholder=" {% trans "type product you want ..." %}">
+                                        <button type='submit' class="search-btn"><i class="fas fa-search"></i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- header-search-end -->
+
+            <!-- offCanvas-menu -->
+            <div class="extra-info">
+                <div class="close-icon menu-close">
+                    <button><i class="far fa-window-close"></i></button>
+                </div>
+                <div class="logo-side mb-30">
+                    <a href="{% url 'home' %}"><img class='rounded-circle' style='width:70px;height:70px;' src="{{about.logo.url}}" alt="Logo"></a>
+                </div>
+                <div class="side-info mb-30">
+                    <div class="contact-list mb-30">
+                        <h4>{% trans "Address" %}</h4>
+                        <p>{{about.address}}</p>
+                    </div>
+                    <div class="contact-list mb-30">
+                        <h4>{% trans "Phone" %}</h4>
+                        <p>{{about.phone_number}}</p>
+                    </div>
+                    <div class="contact-list mb-30">
+                        <h4>{% trans "Email" %}</h4>
+                        <p>{{about.email}}</p>
+                    </div>
+                </div>
+                <ul class="side-instagram list-wrap">
+                    <li><a href="#"><img src="{% static 'img/images/sb_insta01.jpg' %}" alt=""></a></li>
+                    <li><a href="#"><img src="{% static 'img/images/sb_insta02.jpg' %}" alt=""></a></li>
+                    <li><a href="#"><img src="{% static 'img/images/sb_insta03.jpg' %}" alt=""></a></li>
+                    <li><a href="#"><img src="{% static 'img/images/sb_insta04.jpg' %}" alt=""></a></li>
+                    <li><a href="#"><img src="{% static 'img/images/sb_insta05.jpg' %}" alt=""></a></li>
+                    <li><a href="#"><img src="{% static 'img/images/sb_insta06.jpg' %}" alt=""></a></li>
+                </ul>
+                <div class="social-icon-right mt-30">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="offcanvas-overly"></div>
+            <!-- offCanvas-menu-end -->
+
+        </header>
+        <!-- header-area-end -->
+        {% if messages %}
+            {% comment %} <ul class="messages mb-0 top-message px-0"> {% endcomment %}
+                {% for message in messages %}
+                <div {% if message.tags %} class="{{ message.tags }} text-center py-1 mt-3" {% endif %}> <span style='font-size:15px;' class=' px-4 rounded-pill text-white badge bg-{{message.tags}}'>{{ message }}</span> </div>
+                {% endfor %}
+            {% comment %} </ul> {% endcomment %}
+        {% endif %}
+{% block content %}
+
+{% endblock content %}
+<!-- footer-area -->
+<footer>
+    {% comment %} <div style='background-color: #05a2a2;' class="footer-area-two footer-bg-two"> {% endcomment %}
+    <div style='background: linear-gradient(to left,#009797,#024c4c);' class="footer-area-two footer-bg-two">
+        <div class="footer-top-two">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 text-center col-md-7">
+                        <div class="footer-widget">
+                            <div class="fw-logo">
+                                <a href="{% url 'home' %}"><img class='rounded-circle' style='width:100px;height:100px;' src="{{about.logo.url}}" alt=""></a>
+                            </div>
+                            <div class="footer-content text-white">
+                                {{about.description|linebreaks}}
+                                <div class="footer-info">
+                                    <ul class="list-wrap">
+                                        <li>
+                                            <div class="icon">
+                                                <i class="fas fa-map-marker-alt text-warning"></i>
+                                            </div>
+                                            <div class="content">
+                                                {{about.address|linebreaks}}
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="icon">
+                                                <i class="fas fa-phone text-warning"></i>
+                                            </div>
+                                            <div class="content">
+                                                <span class='fs-6'>{{about.phone_number}}</span>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="icon">
+                                                <i class="fas fa-envelope text-warning"></i>
+                                            </div>
+                                            <div class="content">
+                                                <span class='fs-6'>{{about.email}}</span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-center col-md-5 col-sm-6">
+                        <div class="footer-widget">
+                            <h4 class="fw-title">{% trans "Categories" %}</h4>
+                            <div class="footer-link">
+                                <ul class="list-wrap">
+                                    <li><a href="about.html">{% trans "Blogs" %}</a></li>
+                                    <li><a href="contact.html">{% trans "Products" %}</a></li>
+                                    <li><a href="contact.html">{% trans "News" %}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-center col-md-5 col-sm-6">
+                        <div class="footer-widget">
+                            <h4 class="fw-title">{% trans "Quick Access" %}</h4>
+                            <div class="footer-link">
+                                <ul class="list-wrap">
+                                    <li><a {% if request.resolver_match.url_name == 'home' %} class='text-warning' {% endif %} href="{% url 'home' %}">{% trans "Home" %}</a></li>
+                                    <li><a {% if request.resolver_match.url_name == 'about_us' %} class='text-warning' {% endif %} href="{% url 'about_us' %}">{% trans "About Us" %}</a></li>
+                                    <li><a {% if request.resolver_match.url_name == 'contact_us' %} class='text-warning' {% endif %} href="{% url 'contact_us' %}">{% trans "Contact Us" %}</a></li>
+                                    <li><a {% if request.resolver_match.url_name == 'products' %} class='text-warning' {% endif %} href="{% url 'products' %}">{% trans "Products" %}</a></li>
+                                    <li><a {% if request.resolver_match.url_name == 'news' %} class='text-warning' {% endif %} href="{% url 'news' %}">{% trans "News" %}</a></li>
+                                    <li><a {% if request.resolver_match.url_name == 'blogs' %} class='text-warning' {% endif %} href="{% url 'blogs' %}">{% trans "Blogs" %}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer-area-end -->
+
+
+<!-- JS here -->
+<script src="{% static 'js/vendor/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+<script src="{% static 'js/jquery.odometer.min.js' %}"></script>
+<script src="{% static 'js/jquery.appear.js' %}"></script>
+<script src="{% static 'js/gsap.js' %}"></script>
+<script src="{% static 'js/ScrollTrigger.js' %}"></script>
+<script src="{% static 'js/SplitText.js' %}"></script>
+<script src="{% static 'js/gsap-animation.js' %}"></script>
+<script src="{% static 'js/jarallax.min.js' %}"></script>
+<script src="{% static 'js/jquery.parallaxScroll.min.js' %}"></script>
+<script src="{% static 'js/particles.min.js' %}"></script>
+<script src="{% static 'js/jquery.easypiechart.min.js' %}"></script>
+<script src="{% static 'js/jquery.inview.min.js' %}"></script>
+<script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'js/slick.min.js' %}"></script>
+<script src="{% static 'js/ajax-form.js' %}"></script>
+<script src="{% static 'js/aos.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

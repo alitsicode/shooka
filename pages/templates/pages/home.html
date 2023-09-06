@@ -1,0 +1,430 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load jalali_tags %}
+{% load i18n %}
+{% block title %}{{about.company_name}}{% endblock title %}
+{% block content %}
+        <!-- main-area -->
+        <main class="fix">
+            <!-- banner-area -->
+            <section class="banner-area-two banner-bg-two" data-background="{% static 'img/banner/h2_banner_bg.jpg' %}">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6">
+                            <div class="banner-content-two">
+                                <h2 class="title" data-aos="fade-up" data-aos-delay="300">جمله ی دلخواه 1</h2>
+                                <p data-aos="fade-up" data-aos-delay="500">جمله ی دلخواه 2</p>
+                                <div class="banner-btn">
+                                    <a href="{% url 'about_us' %}" class="btn" data-aos="fade-right" data-aos-delay="700">{% trans "About Us" %}</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="banner-img text-center">
+                                <img src="{% static 'img/AS-77917361.webp' %}" alt="" data-aos="fade-left" data-aos-delay="400">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner-shape-wrap">
+                    <img src="{% static 'img/banner/h2_banner_shape01.png' %}" alt="">
+                    <img src="{% static 'img/banner/h2_banner_shape02.png' %}" alt="">
+                    <img src="{% static 'img/banner/h2_banner_shape03.png' %}" alt="" data-aos="zoom-in-up" data-aos-delay="800">
+                </div>
+            </section>
+            <!-- banner-area-end -->
+
+            <!-- features-area -->
+            <section class="features-area-two pt-80">
+                <div class="container">
+                    <div class="features-item-wrap">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="features-item-two">
+                                    <div class="features-icon-two">
+                                        <i class="flaticon-profit"></i>
+                                    </div>
+                                    <div class="features-content-two">
+                                        <h4 class="title">کسب و کار</h4>
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="features-item-two">
+                                    <div class="features-icon-two">
+                                        <i class="flaticon-investment"></i>
+                                    </div>
+                                    <div class="features-content-two">
+                                        <h4 class="title">طراحی سایت</h4>
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="features-item-two">
+                                    <div class="features-icon-two">
+                                        <i class="flaticon-taxes"></i>
+                                    </div>
+                                    <div class="features-content-two">
+                                        <h4 class="title">سئو و تولید محتوا</h4>
+                                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- features-area-end -->
+
+            <!-- about-area -->
+            <section class="about-area-three">
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-6 col-md-9">
+                            <div class="about-img-wrap-three">
+                                <img src="{% static 'img/4180291.webp' %}" alt="" data-aos="fade-down-right" data-aos-delay="0">
+                                <img style='height:262px;width:262px;' src="{% static 'img/200-compressor.jpg' %}" alt="" data-aos="fade-left" data-aos-delay="400">
+                                <div class="experience-wrap" data-aos="fade-up" data-aos-delay="300">
+                                    <h2 class="title">12 <span>{% trans "years" %}</span></h2>
+                                    <p>{% trans "experience in detergent industry" %}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="about-content-three">
+                                <div class="section-title-two mb-20 tg-heading-subheading animation-style3">
+                                    <span class="badge bg-warning text-dark p-2">{% trans "Why Choose Us" %}</span>
+                                    <h2 class="title">جمله یا شعار دلخواه</h2>
+                                </div>
+                                <p class="info-one">{{about.description|linebreaks}}</p>
+                                <div class="about-list-two mt-3">
+                                    <ul class="list-wrap">
+                                        {% for why in why_us %}
+                                        <li><i class="fas fa-arrow-right"></i>{{why.title}}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <a class='btn bg-warning text-dark' href="{% url 'products' %}">{% trans "products" %}</a>
+                                {% for team_member in team_members %}
+                                    {% if team_member.company_role == 'مدیر عامل' or team_member.company_role == 'ceo' %}
+                                    <div class="about-author-info">
+                                        <div class="thumb">
+                                            <img class='rounded-circle' style='width:70px;height:70px;box-shadow: 0px 2px 10px black;' src="{{team_member.profile_photo.url}}" alt="">
+                                        </div>
+                                        <div class="content">
+                                            <h2 class="title">{{team_member.fullname}}</h2>
+                                            <span>{{team_member.company_role}}</span>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-shape-wrap-two">
+                    <img src="{% static 'img/images/h2_about_shape01.png' %}" alt="">
+                    <img src="{% static 'img/images/h2_about_shape02.png' %}" alt="">
+                    <img src="{% static 'img/images/h2_about_shape03.png' %}" alt="" data-aos="fade-left" data-aos-delay="500">
+                </div>
+            </section>
+            <!-- about-area-end -->
+
+            <!-- brand-area -->
+            <div class="brand-aera-two pb-80" dir="ltr">
+                <div class="container">
+                    <div class="row brand-active">
+                        {% for company in companies %}
+                            <div class="col-lg-12">
+                                <div class="brand-item">
+                                    <img src="{{company.company_logo.url}}" alt="">
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- brand-area-end -->
+
+            <!-- services-area -->
+            <section class="services-area-two services-bg-two" data-background="{% static 'img/bg/services_bg02.jpg' %}">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-md-8">
+                            <div class="section-title-two mb-60 tg-heading-subheading animation-style3">
+                                <h2 class="title">{% trans "our products" %}</h2>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-4">
+                            <div class="view-all-btn text-end mb-30">
+                                <a href="{% url 'products' %}" class="btn">{% trans "All Products" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        {% for product in products %}
+                            <div class="col-lg-4 col-md-6 col-sm-10">
+                                <div class="blog-post-item-two">
+                                    <div class="blog-post-thumb-two">
+                                        <a href="{% url 'product_detail' product.id %}"><img style='width:100%;height:390px;' src="{{product.image.url}}" alt=""></a>
+                                    </div>
+                                    <div class="blog-post-content-two">
+                                        {% for cat in product.category.all %}
+                                        <a href="{% url 'product_category' cat.id %}" class="badge bg-primary p-2 mx-1 text-white mb-3">{{cat.title}}</a>
+                                        {% endfor %}
+                                        <h2 class="title"><a href="{% url 'product_detail' product.id %}">{{product.title}}</a></h2>
+                                        <p>{{product.description|safe|truncatewords:12}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+            <!-- services-area-end -->
+
+            <!-- overview-area -->
+            <section class="overview-area pt-120 pb-120">
+                <div class="overview-shape" data-aos="fade-left" data-aos-delay="200" data-background="{% static 'img/images/overview_shape.png' %}"></div>
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-6 col-md-10">
+                            <div class="overview-img-wrap">
+                                <img style='width:416px;height:506px;' src="{% static 'img/AS-77917361.webp' %}" alt="">
+                                <div class="icon">
+                                    <i class="flaticon-report-1"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="overview-content">
+                                <div class="section-title-two mb-20 tg-heading-subheading animation-style3">
+                                    <span class="badge bg-primary text-white p-2">{% trans "About Our Company" %}</span>
+                                    <h2 class="title">جمله ی دلخواه</h2>
+                                </div>
+                                <p class="info-one">{{about.description|linebreaks}}</p>
+                                <div class="content-bottom mt-3">
+                                    <ul class="list-wrap">
+                                        <li>
+                                            <div class="icon">
+                                                <i class="flaticon-trophy"></i>
+                                            </div>
+                                            <div class="content">
+                                                <h2 class="count"><span class="odometer" data-count="235"></span>+</h2>
+                                                <p>{% trans "Product Count" %}</p>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="icon">
+                                                <i class="flaticon-rating"></i>
+                                            </div>
+                                            <div class="content">
+                                                <h2 class="count"><span class="odometer" data-count="98"></span>k</h2>
+                                                <p>{% trans "Our Customers" %}</p>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- overview-area-end -->
+
+            <!-- project-area -->
+            <section class="project-area-two project-bg-two" data-background="{% static 'img/bg/project_bg02.jpg' %}">
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="section-title-two mb-40 tg-heading-subheading animation-style3">
+                                <span class="badge bg-warning p-2 text-dark">{% trans " News" %}</span>
+                                <h2 class="title">{% trans "Recently News " %}</h2>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-10">
+                            <div class="project-content-top">
+                                <a class='btn bg-primary' href="{% url 'news' %}">{% trans "All News" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container custom-container">
+                    <div class="row justify-content-center">
+                        {% for new in news %}
+                            <div class="col-lg-4 col-md-6 col-sm-10">
+                                <div class="blog-post-item-two">
+                                    <div class="blog-post-thumb-two">
+                                        <a href="{% url 'news_detail' new.id %}"><img style='width:100%;height:275px;' src="{{new.image.url}}" alt=""></a>
+                                    </div>
+                                    <div class="blog-post-content-two">
+                                        {% for cat in new.category.all %}
+                                        <a href="{% url 'new_category' cat.id %}" class="badge bg-primary p-2 mx-1 text-white mb-3">{{cat.title}}</a>
+                                        {% endfor %}
+                                        <h2 class="title"><a href="{% url 'news_detail' new.id %}">{{new.title}}</a></h2>
+                                        <p>{{new.description|safe|truncatewords:12}}</p>
+                                        <div class="blog-meta">
+                                            <ul class="list-wrap">
+                                                <li><i class="fas fa-calendar-alt"></i>{{new.created|to_jalali}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+            <!-- project-area-end -->
+
+            <!-- cta-area -->
+            <section class="cta-area">
+                <div class="container">
+                    <div class="cta-inner-wrap" data-background="{% static 'img/bg/cta_bg.jpg' %}">
+                        <div class="row align-items-center">
+                            <div class="col-lg-9">
+                                <div class="cta-content">
+                                    <div class="cta-info-wrap">
+                                        <div class="icon">
+                                            <i class="flaticon-phone-call"></i>
+                                        </div>
+                                        <div class="content">
+                                            <span>برای دریافت مشاوره تماس بگیرید.</span>
+                                            <a href="tel:0123456789">09133455678</a>
+                                        </div>
+                                    </div>
+                                    <h2 class="title">ما در انتخاب درست به شما کمک میکنیم</h2>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="cta-btn text-end">
+                                    <a href="contact.html" class="btn">ارتباط با ما</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- cta-area-end -->
+
+            <!-- team-area -->
+            <section class="team-area-two">
+                <div class="team-shape">
+                    <img src="{% static 'img/team/team_shape.png' %}" alt="" data-aos="fade-right" data-aos-delay="200">
+                </div>
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="section-title-two mb-45 tg-heading-subheading animation-style3">
+                                <span class="badge bg-warning p-2 text-dark">{% trans " Experts" %}</span>
+                                <h2 class="title">{% trans "Our Team Member" %}</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        {% for team_member in team_members %}
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8">
+                                <div class="team-item-two">
+                                    <div >
+                                        <a><img style='height:390px;width:288px;' src="{{team_member.profile_photo.url}}" alt=""></a>
+                                        <div class="team-social-two">
+                                            <ul class="list-wrap">
+                                                <li><a href="#"><i class="fas fa-envelope fa-lg"></i></a></li>
+                                                {% if team_member.linkdin_id %}<li><a href="#"><i class="fab fa-linkedin fa-lg"></i></a></li>{% endif %}
+                                                {% if team_member.whatsapp_number %}<li><a href="#"><i class="fab fa-whatsapp fa-lg"></i></a></li>{% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="team-content-two">
+                                        <h2 class="title"><a class='text-dark badge bg-warning rounded-pill'>{{team_member.fullname}}</a></h2>
+                                        <span style='background-color:#0045ce;' class='text-white badge rounded-pill'>{{team_member.company_role}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+            <!-- team-area-end -->
+
+            <!-- testimonial-area -->
+            <section class="testimonial-area-two testimonial-bg-two" data-background="{% static 'img/bg/h2_testimonial_bg.jpg' %}" dir="ltr">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7">
+                            <div class="section-title-two white-title text-center mb-50 tg-heading-subheading animation-style3">
+                                <span class="badge bg-warning text-dark p-2">{% trans "testimonial" %}</span>
+                                <h2 class="title">{% trans "Customers say about us" %}</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item-wrap-two">
+                        <div class="row testimonial-active-two">
+                            {% for contact in contacts %}
+                                <div class="col-lg-6"  dir="rtl">
+                                    <div class="testimonial-item-two">
+                                        <div class="testimonial-content-two">
+                                            <p>{{contact.text|linebreaks}}</p>
+                                            <div class="testimonial-avatar">
+                                                <div class="avatar-info">
+                                                    <h2 class="title">{{contact.fullname}}</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="testimonial-nav-two"></div>
+                    </div>
+                </div>
+            </section>
+            <!-- testimonial-area-end -->
+
+            <!-- blog-area -->
+            <section class="blog-area-two blog-bg-two" data-background="{% static 'img/bg/h2_blog_bg.jpg' %}">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="section-title-two text-center mb-50 tg-heading-subheading animation-style3">
+                                <span class="badge bg-primary text-white p-2">{% trans "Blogs" %}</span>
+                                <h2 class="title mb-3">{% trans "Recently Blogs" %}</h2>
+                                <a class='btn bg-warning text-dark' href="{% url 'blogs' %}">{% trans "All Blogs" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        {% for blog in blogs %}
+                            <div class="col-lg-4 col-md-6 col-sm-10">
+                                <div class="blog-post-item-two">
+                                    <div class="blog-post-thumb-two">
+                                        <a href="{% url 'blogs_detail' blog.id %}"><img style='width:100%;height:230px;' src="{{blog.image.url}}" alt=""></a>
+                                        {% comment %} <a href="blog.html" class="tag">توسعه محتوا</a> {% endcomment %}
+                                    </div>
+                                    <div class="blog-post-content-two">
+                                        {% for cat in blog.category.all %}
+                                        <a href="{% url 'blog_category' cat.id %}" class="badge bg-primary p-2 mx-1 text-white mb-3">{{cat.title}}</a>
+                                        {% endfor %}
+                                        <h2 class="title"><a href="{% url 'blogs_detail' blog.id %}">{{blog.title}}</a></h2>
+                                        <p>{{blog.text|safe|truncatewords:12}}</p>
+                                        <div class="blog-meta">
+                                            <ul class="list-wrap">
+                                                <li>
+                                                    <a href="{% url 'blogs_detail' blog.id %}"><img class='rounded-circle' style='width:50px;height:50px;box-shadow: 0px 2px 10px black;' src="{{blog.team_member.profile_photo.url}}" alt="">{{blog.team_member.fullname}}</a>
+                                                </li>
+                                                <li><i class="fas fa-calendar-alt"></i>{{blog.created|to_jalali}}</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+            <!-- blog-area-end -->
+        </main>
+        <!-- main-area-end -->
+{% endblock content %}

@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}{% trans "about us" %}{% endblock title %}
+{% block content %}
+        <!-- main-area -->
+        <main class="fix">
+
+            <!-- breadcrumb-area -->
+            <section class="breadcrumb-area breadcrumb-bg" data-background="{% static 'img/bg/breadcrumb_bg.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="breadcrumb-content">
+                                <h2 class="title text-warning">{% trans "About Us" %}</h2>
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a class='text-white' href="index.html">{% trans "Home" %}</a></li>
+                                        <li class="breadcrumb-item active text-warning" aria-current="page">{% trans "About Us" %}</li>
+                                    </ol>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="breadcrumb-shape-wrap">
+                    <img src="{% static 'img/images/breadcrumb_shape01.png' %}" alt="">
+                    <img src="{% static 'img/images/breadcrumb_shape02.png' %}" alt="">
+                </div>
+            </section>
+            <!-- breadcrumb-area-end -->
+
+            <!-- about-area -->
+            <section class="about-area-eight pt-120 pb-120">
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-6 col-md-9">
+                            <div class="about-img-eight">
+                                <img src="{% static 'img/images/inner_about_img03.jpg' %}" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="about-content-eight">
+                                <div class="section-title-two mb-30">
+                                    <span class="bg-warning text-dark">{% trans "company description " %}</span>
+                                    <h2 class="title">{% trans "we have 12 years experience" %}</h2>
+                                </div>
+                                <p>{{about.description|linebreaks}}</p>
+                                <h3>{% trans "why choose us" %}</h3>
+                                <div class="about-content-inner">
+                                    <ul class="list-wrap ">
+                                        {% for why in why_us %}
+                                        <li>
+                                            <div class="icon">
+                                                <i class="fas fa-medal"></i>
+                                            </div> 
+                                            <div class="content mt-4">
+                                                <h4 class="title">{{why.title}}</h4>
+                                            </div>
+                                        </li>
+                                        {% endfor %}  
+                                    </ul>
+                                </div>
+                                <div class="about-content-bottom">
+                                    <div class="services-btn">
+                                        <a href="services.html" class="btn">{% trans "products" %}</a>
+                                    </div>
+                                    {% for team_member in team_members %}
+                                        {% if team_member.company_role == 'ceo' or team_member.company_role == 'مدیر عامل' %}
+                                        <div class="about-author-info">
+                                            <div class="thumb">
+                                                <img style='width:70px;height:70px;box-shadow: 0px 2px 10px black;' class='rounded-circle' src="{{team_member.profile_photo.url}}" alt="">
+                                            </div>
+                                            <div class="content">
+                                                <h2 class="title">{{team_member.fullname}}</h2>
+                                                <span>{{team_member.company_role}}</span>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- about-area-end -->
+
+            <!-- choose-area -->
+            <section class="choose-area-three">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="choose-content-three">
+                                <div class="section-title-two white-title mb-30">
+                                    <span class="bg-warning text-dark">{% trans "FAQ" %}</span>
+                                    <h2 class="title">{% trans "there is some questions and them answers about our company" %}</h2>
+                                </div>
+                                <div class="accordion-wrap-two">
+                                    <div class="accordion" id="accordionExample">
+                                        {% for faq in faqs %}
+                                            <div class="accordion-item">
+                                                <h2 class="accordion-header">
+                                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{faq.id}}" aria-expanded="true" aria-controls="collapse{{faq.id}}">
+                                                        {{faq.question}}
+                                                    </button>
+                                                </h2>
+                                                <div id="collapse{{faq.id}}" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+                                                    <div class="accordion-body">
+                                                        <p>{{faq.answer}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="choose-img-three">
+                                <img src="{% static 'img/images/inner_choose_img.jpg' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- choose-area-end -->
+
+
+            <!-- team-area -->
+            <section class="team-area team-bg" data-background="{% static 'img/bg/team_bg.jpg' %}">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-6 col-lg-8">
+                            <div class="section-title text-center mb-50">
+                                <h2 class="title">{% trans "Getting to know our team member" %}</h2>
+                                <p>{% trans "you can see our team member and information of them" %}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        {% for team_member in team_members %}
+                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-9">
+                                <div class="team-item">
+                                    <div class="team-thumb">
+                                        <img style='width:284px;height:284px;' src="{{team_member.profile_photo.url}}" alt="">
+                                        <div class="team-social">
+                                            <ul class="list-wrap">
+                                                {% if team_member.linkdin_id %}<li><a href="#"><i class="fab fa-linkedin fa-lg"></i></a></li>{% endif %}
+                                                {% if team_member.whatsapp_number %}<li><a href="#"><i class="fab fa-whatsapp fa-lg"></i></a></li>{% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="team-content">
+                                        <h2 class="title"><a>{{team_member.fullname}}</a></h2>
+                                        <span>{{team_member.company_role}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        
+                    </div>
+                </div>
+            </section>
+            <!-- team-area-end -->
+
+
+            <!-- testimonial-area -->
+            <section class="testimonial-area-two testimonial-bg-two" data-background="{% static 'img/bg/h2_testimonial_bg.jpg' %}" dir="ltr">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-7">
+                            <div class="section-title-two white-title text-center mb-50 tg-heading-subheading animation-style3">
+                                <span class="bg-warning text-dark">{% trans "testimonial" %}</span>
+                                <h2 class="title">{% trans "Customers say about us" %}</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item-wrap-two">
+                        <div class="row testimonial-active-two">
+                            {% for contact in contacts %}
+                                <div class="col-lg-6"  dir="rtl">
+                                    <div class="testimonial-item-two">
+                                        <div class="testimonial-content-two">
+                                            <p>{{contact.text}}</p>
+                                            <div class="testimonial-avatar">
+                                                <div class="avatar-info">
+                                                    <h2 class="title">{{contact.fullname}}</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="testimonial-nav-two"></div>
+                    </div>
+                </div>
+            </section>
+            <!-- testimonial-area-end -->
+
+            <!-- brand-area -->
+            <div class="brand-area-six pt-80 pb-80" dir="ltr">
+                <div class="container">
+                    <h3 class='text-center'>{% trans "Companies that cooperate with us" %}</h3>
+                    <div class="row brand-active mt-5">
+                        {% for company in companies %}
+                            <div class="col-lg-12">
+                                <div class="brand-item">
+                                    <img src="{{company.company_logo.url}}" alt="">
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- brand-area-end -->
+
+
+        </main>
+        <!-- main-area-end -->
+{% endblock content %}
